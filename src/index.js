@@ -5,7 +5,7 @@ import './index.css';
 import reportWebVitals from './reportWebVitals';
 
 const element=<h1>RemuriaSanTeam</h1>;
-const name='〇〇';
+const name='レムリア';
 //変数の埋め込みができる
 const aisatsu=<h1>どうも、{name}さん！</h1>
 
@@ -40,6 +40,17 @@ function tick(){
   ReactDOM.render(sample,document.getElementById('sample'));
 }
 setInterval(tick,1000);
+
+//関数コンポーネントの定義(イニシャルの部分は大文字でないとダメ)
+function Welcome(props){
+  return <h1>どうも{props.name}</h1>;
+}
+//welcome関数のレンダー
+const come=<Welcome name="めそ" />;
+ReactDOM.render(
+  come,
+  document.getElementById('function')
+);
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
