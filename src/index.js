@@ -45,10 +45,21 @@ setInterval(tick,1000);
 function Welcome(props){
   return <h1>どうも{props.name}</h1>;
 }
-//welcome関数のレンダー
+//コンポーネントの組み合わせ
+function App(){
+  return(
+    <div>
+      <Welcome name="めそ" />
+      <Welcome name="ぽよ" />
+      <Welcome name="ぴえん" />
+    </div>
+  );
+}
+//Welcome関数のレンダー
+//App関数のレンダー
 const come=<Welcome name="めそ" />;
 ReactDOM.render(
-  come,
+  <App />,
   document.getElementById('function')
 );
 // If you want to start measuring performance in your app, pass a function
