@@ -170,21 +170,21 @@ class Clock extends React.Component {
     this.state = { date: new Date() }
   }
   //コンポーネントの設定
-  componentDidMount(){
+  componentDidMount() {
     //出力がDOMにレンダーされた後に設定される
-    this.timerID=setInterval(
-      ()=>this.tick(),
+    this.timerID = setInterval(
+      () => this.tick(),
       1000
     );
   }
   //コンポーネントのクリア
-  componentWillUnmount(){
+  componentWillUnmount() {
     clearInterval(this.timerID)
   }
   //ローカルstateの更新をスケジュール
-  tick(){
+  tick() {
     this.setState({
-      date:new Date()
+      date: new Date()
     });
   }
   render() {
@@ -207,14 +207,169 @@ ReactDOM.render(
  * 代わりにsetState関数を使う
  * 直接代入が許されるのはコンストラクタにのみ
  */
-this.setState({text:'ヤッホー'})
+//this.setState({text:'ヤッホー'})
 
 /**
  * stateを二つ使いたいなら引数を二つ用意する
  */
+/*
 this.setState((state,props)=>({
   counter:state.counter+props.increment
 }))
+*/
+/**
+ * イベント処理
+ * 
+ * イベント処理とReactの違い
+ * ・ReactのイベントはcamelCaseで命名される
+ * ・JSXではイベントハンドラとして関数を渡す
+ * ・Reactはfalseを返しても動作を止めることが出来ない
+ */
+
+
+//Reactクラスは外見と中身同時に作れますよコンポーネントってこと？
+class Toggle extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = { isToggleOn: true }
+    this.handleClick = this.handleClick.bind(this)
+  }
+
+  handleClick() {
+    this.setState(prevState => ({
+      isToggleOn: !prevState.isToggleOn
+    }))
+  }
+  render() {
+    return (
+      <button onClick={this.handleClick}>
+        {this.state.isToggleOn ? 'ON' : 'OFF'}
+      </button>
+    )
+  }
+}
+ReactDOM.render(
+  <Toggle />,//クラス召喚
+  document.getElementById('toggle')
+)
+
+/**
+ * バインドしたくないなら
+ *  ・パブリッククラスフィールド構文
+ *  ・アロー関数
+ * を使えば問題なし
+ */
+
+/**
+ * 
+ * 条件付きレンダー
+ * 
+ */
+
+function UserGreeting(props) {
+  return <h1>おかえんなさい！</h1>;
+}
+
+function GuestGreeting(props) {
+  return <h1>サインインしてね</h1>;
+}
+
+function Greeting(props) {
+  const isLoggedIn = props.isLoggedIn;
+  if (isLoggedIn) {
+    return <UserGreeting />;
+  }
+  return <GuestGreeting />;
+}
+
+ReactDOM.render(
+  // Try changing to isLoggedIn={true}:
+  <Greeting isLoggedIn={false} />,
+  document.getElementById('signIn')
+);
+
+/**
+ * 要素を作って条件に入れる
+ */
+
+class LoginControl extends React.Component {
+  constructor(props) {
+    super(props)
+    //ログインクリック
+    this.handleLoginClick = this.handleLoginClick.bind(this)
+    //ログアウトクリック
+    this.handleLogoutClick = this.handleLogoutClick.bind(this)
+    //初期状態(ログアウト)
+    this.state = { isLoggedIn: false }
+  }
+  //ログイン関数
+  handleLoginClick() {
+    this.setState({ isLoggedIn: true })
+  }
+  //ログアウト関数
+  handleLogoutClick() {
+    this.setState({ isLoggedIn: false })
+  }
+  //一連の処理
+  render() {
+    const isLoggedIn = this.state.isLoggedIn
+    let button
+    if (isLoggedIn) {
+      button = <LogoutButton onClick={this.handleLogoutClick} />
+    } else {
+      button = <LoginButton onClick={this.handleLoginClick} />
+    }
+    return (
+      <div>
+        <Greeting isLoggedIn={isLoggedIn} />
+        {button}
+      </div>
+    );
+  }
+}
+
+function LoginButton(props) {
+  return (
+    <button onClick={props.onClick}>
+      Login
+    </button>
+  )
+}
+
+function LogoutButton(props) {
+  return (
+    <button onClick={props.onClick}>
+      Logout
+    </button>
+  )
+}
+
+ReactDOM.render(
+  <LoginControl />,
+  document.getElementById('login')
+)
+
+/**
+ * 論理演算子による条件分岐
+ */
+
+//messages配列の中身が0ならばp要素の文は表示されない
+function Mailbox(props) {
+  const unreadMessages = props.unreadMessages
+  return (
+    <div>
+      <h1>どうも🎵</h1>
+      {unreadMessages.length > 0 &&
+        <p>あんた{unreadMessages.length}件メール溜まってるよ！</p>
+      }
+    </div>
+  )
+}
+const messages=['a','a','a','a']
+ReactDOM.render(
+  <Mailbox unreadMessages={messages} />,
+  document.getElementById('mail')
+)
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
