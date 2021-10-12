@@ -370,6 +370,117 @@ ReactDOM.render(
   <Mailbox unreadMessages={messages} />,
   document.getElementById('mail')
 )
+
+/**
+ * 
+ *  リストとkey
+ * 
+ */
+//普通の配列宣言
+const numbers = [1, 2, 3, 4, 5];
+const doubled = numbers.map((number) => number * 2);
+console.log(doubled);
+
+//配列コンポーネントのレンダー
+const numbers_a = [1, 2, 3, 4, 5];
+const listItems = numbers_a.map((number) =>
+  <li>{number}</li>
+);
+ReactDOM.render(
+  <ul>{listItems}</ul>,
+  document.getElementById('list')
+)
+
+/**
+ * リスト項目にはkey(固有の値)を与えるべき
+ * indexなど並び順が変更される可能性のある変数は最終手段として使う。基本使わない
+ * 
+ * 理由:Reaactの不要な更新(処理)をなくすため
+ */
+
+function NumberList(props){
+  const numbers_b=props.numbers_b
+  const listItems=numbers_b.map((number)=>
+  <li key={number.toString()}>
+    {number}
+  </li>
+  )
+  return(
+    <ul>{listItems}</ul>
+  )
+}
+
+const numbers_b=[1,3,5,7,9]
+ReactDOM.render(
+  <NumberList numbers_b={numbers_b} />,
+  document.getElementById('list')
+)
+
+/**
+ *   keyは兄弟要素の中で同じであればよい
+ */
+function Blog(props){
+  const sidebar=(
+    <ul>
+      {props.posts.map((post)=>
+      //同一のキーを使用している
+      <li key={post.id}>
+        {post.title}
+      </li>
+      )}
+    </ul>
+  )
+  const content= props.posts.map((post)=>
+  //同一のキーを使用している
+  <div key={post.id}>
+    <h3>{post.title}</h3>
+    <p>{post.content}</p>
+  </div>
+  )
+  return(
+    <div>
+      {sidebar}
+      <hr />
+      {content}
+    </div>
+  )
+}
+
+const posts=[
+  {id:1,title:'こんにちは！',content:'どうも✨'},
+  {id:2,title:'こんばんは',content:'寝るわ'}
+]
+ReactDOM.render(
+  <Blog posts={posts} />,
+  document.getElementById('blog')
+)
+
+/***
+ * 
+ * フォーム
+ * 
+ */
+
+class NameForm extends React.Component{
+  constructor(props){
+    super(props)
+    this.state={value:''}
+    this.handleChange=this.handleChange.bind(this)
+    this.handleSubmit=this.handleSubmit.bind(this)
+  }
+  handleChange(event){
+    this.setState({value:event.target.value})
+  }
+  handleSubmit(event){
+    alert('やっほー'+this.state.value)
+    event.preventDefault()
+  }
+  render(){
+    return(
+      <form></form>
+    )
+  }
+}
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
