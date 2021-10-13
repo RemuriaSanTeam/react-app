@@ -472,15 +472,25 @@ class NameForm extends React.Component{
     this.setState({value:event.target.value})
   }
   handleSubmit(event){
-    alert('やっほー'+this.state.value)
+    alert('やっほー'+this.state.value+'!')
     event.preventDefault()
   }
   render(){
     return(
-      <form></form>
+      <form onSubmit={this.handleSubmit}>
+        <label>
+          Name:
+          <input type="text" value={this.state.value} onChange={this.handleChange} />
+        </label>
+        <input type="submit" value="Submit" />
+      </form>
     )
   }
 }
+ReactDOM.render(
+  <NameForm />,
+  document.getElementById('form')
+)
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
