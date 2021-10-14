@@ -1,3 +1,4 @@
+import { render } from '@testing-library/react';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
@@ -491,6 +492,69 @@ ReactDOM.render(
   <NameForm />,
   document.getElementById('form')
 )
+/**
+ * 
+ * textareaのレンダー
+ * 
+ */
+
+class EssayForm extends React.Component{
+  constructor(props){
+    super(props)
+    this.state={
+      value:"テキスト入れてね♪"
+    }
+    this.handleChange=this.handleChange.bind(this)
+    this.handleSubmit=this.handleSubmit.bind(this)
+  }
+  handleChange(event){
+    this.setState({value:event.target.value})
+  }
+  handleSubmit(event){
+    alert('はぁ～い'+this.state.value)
+    event.preventDefault()
+  }
+  /*
+  テキストボックスのとき
+  render(){
+    return(
+      <form onSubmit={this.handleSubmit}>
+        <label>
+          内容:
+          <textarea value={this.state.value} onChange={this.handleChange} />
+        </label>
+        <input type="submit" value="Submit" />
+      </form>
+    )
+  }
+  */
+ /*
+ セレクトタグのとき
+  render() {
+    return (
+      <form onSubmit={this.handleSubmit}>
+        <label>
+          Pick your favorite flavor:
+          <select value={this.state.value} onChange={this.handleChange}>
+            <option value="grapefruit">Grapefruit</option>
+            <option value="lime">Lime</option>
+            <option value="coconut">Coconut</option>
+            <option value="mango">Mango</option>
+          </select>
+        </label>
+        <input type="submit" value="Submit" />
+      </form>
+    );
+  }
+  */
+}
+ReactDOM.render(
+  <EssayForm />,
+  document.getElementById('text')
+)
+
+//継承はあまり使用しない
+
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
