@@ -514,8 +514,8 @@ class EssayForm extends React.Component{
     alert('はぁ～い'+this.state.value)
     event.preventDefault()
   }
-  /*
-  テキストボックスのとき
+  
+  //テキストボックスのとき
   render(){
     return(
       <form onSubmit={this.handleSubmit}>
@@ -527,8 +527,8 @@ class EssayForm extends React.Component{
       </form>
     )
   }
-  */
- /*
+  
+  /*
  セレクトタグのとき
   render() {
     return (
