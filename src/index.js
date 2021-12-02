@@ -1,4 +1,4 @@
-import { render } from '@testing-library/react';
+//import { render } from '@testing-library/react';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
@@ -366,7 +366,7 @@ function Mailbox(props) {
     </div>
   )
 }
-const messages=['a','a','a','a']
+const messages = ['a', 'a', 'a', 'a']
 ReactDOM.render(
   <Mailbox unreadMessages={messages} />,
   document.getElementById('mail')
@@ -399,19 +399,19 @@ ReactDOM.render(
  * 理由:Reaactの不要な更新(処理)をなくすため
  */
 
-function NumberList(props){
-  const numbers_b=props.numbers_b
-  const listItems=numbers_b.map((number)=>
-  <li key={number.toString()}>
-    {number}
-  </li>
+function NumberList(props) {
+  const numbers_b = props.numbers_b
+  const listItems = numbers_b.map((number) =>
+    <li key={number.toString()}>
+      {number}
+    </li>
   )
-  return(
+  return (
     <ul>{listItems}</ul>
   )
 }
 
-const numbers_b=[1,3,5,7,9]
+const numbers_b = [1, 3, 5, 7, 9]
 ReactDOM.render(
   <NumberList numbers_b={numbers_b} />,
   document.getElementById('list')
@@ -420,25 +420,25 @@ ReactDOM.render(
 /**
  *   keyは兄弟要素の中で同じであればよい
  */
-function Blog(props){
-  const sidebar=(
+function Blog(props) {
+  const sidebar = (
     <ul>
-      {props.posts.map((post)=>
-      //同一のキーを使用している
-      <li key={post.id}>
-        {post.title}
-      </li>
+      {props.posts.map((post) =>
+        //同一のキーを使用している
+        <li key={post.id}>
+          {post.title}
+        </li>
       )}
     </ul>
   )
-  const content= props.posts.map((post)=>
-  //同一のキーを使用している
-  <div key={post.id}>
-    <h3>{post.title}</h3>
-    <p>{post.content}</p>
-  </div>
+  const content = props.posts.map((post) =>
+    //同一のキーを使用している
+    <div key={post.id}>
+      <h3>{post.title}</h3>
+      <p>{post.content}</p>
+    </div>
   )
-  return(
+  return (
     <div>
       {sidebar}
       <hr />
@@ -447,9 +447,9 @@ function Blog(props){
   )
 }
 
-const posts=[
-  {id:1,title:'こんにちは！',content:'どうも✨'},
-  {id:2,title:'こんばんは',content:'寝るわ'}
+const posts = [
+  { id: 1, title: 'こんにちは！', content: 'どうも✨' },
+  { id: 2, title: 'こんばんは', content: '寝るわ' }
 ]
 ReactDOM.render(
   <Blog posts={posts} />,
@@ -462,22 +462,22 @@ ReactDOM.render(
  * 
  */
 
-class NameForm extends React.Component{
-  constructor(props){
+class NameForm extends React.Component {
+  constructor(props) {
     super(props)
-    this.state={value:''}
-    this.handleChange=this.handleChange.bind(this)
-    this.handleSubmit=this.handleSubmit.bind(this)
+    this.state = { value: '' }
+    this.handleChange = this.handleChange.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
   }
-  handleChange(event){
-    this.setState({value:event.target.value})
+  handleChange(event) {
+    this.setState({ value: event.target.value })
   }
-  handleSubmit(event){
-    alert('やっほー'+this.state.value+'!')
+  handleSubmit(event) {
+    alert('やっほー' + this.state.value + '!')
     event.preventDefault()
   }
-  render(){
-    return(
+  render() {
+    return (
       <form onSubmit={this.handleSubmit}>
         <label>
           Name:
@@ -498,26 +498,26 @@ ReactDOM.render(
  * 
  */
 
-class EssayForm extends React.Component{
-  constructor(props){
+class EssayForm extends React.Component {
+  constructor(props) {
     super(props)
-    this.state={
-      value:"テキスト入れてね♪"
+    this.state = {
+      value: "テキスト入れてね♪"
     }
-    this.handleChange=this.handleChange.bind(this)
-    this.handleSubmit=this.handleSubmit.bind(this)
+    this.handleChange = this.handleChange.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
   }
-  handleChange(event){
-    this.setState({value:event.target.value})
+  handleChange(event) {
+    this.setState({ value: event.target.value })
   }
-  handleSubmit(event){
-    alert('はぁ～い'+this.state.value)
+  handleSubmit(event) {
+    alert('はぁ～い' + this.state.value)
     event.preventDefault()
   }
-  
+
   //テキストボックスのとき
-  render(){
-    return(
+  render() {
+    return (
       <form onSubmit={this.handleSubmit}>
         <label>
           内容:
@@ -527,7 +527,7 @@ class EssayForm extends React.Component{
       </form>
     )
   }
-  
+
   /*
  セレクトタグのとき
   render() {
