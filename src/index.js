@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 //import { render } from '@testing-library/react';
-=======
-import { render } from '@testing-library/react';
->>>>>>> 19969972bbf48b296431a86352f3edd325d61d6a
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
@@ -559,26 +555,26 @@ class EssayForm extends React.Component{
   /*
 =======
   */
- /*
->>>>>>> 19969972bbf48b296431a86352f3edd325d61d6a
- セレクトタグのとき
-  render() {
-    return (
-      <form onSubmit={this.handleSubmit}>
-        <label>
-          Pick your favorite flavor:
-          <select value={this.state.value} onChange={this.handleChange}>
-            <option value="grapefruit">Grapefruit</option>
-            <option value="lime">Lime</option>
-            <option value="coconut">Coconut</option>
-            <option value="mango">Mango</option>
-          </select>
-        </label>
-        <input type="submit" value="Submit" />
-      </form>
-    );
-  }
-  */
+  /*
+ >>>>>>> 19969972bbf48b296431a86352f3edd325d61d6a
+  セレクトタグのとき
+   render() {
+     return (
+       <form onSubmit={this.handleSubmit}>
+         <label>
+           Pick your favorite flavor:
+           <select value={this.state.value} onChange={this.handleChange}>
+             <option value="grapefruit">Grapefruit</option>
+             <option value="lime">Lime</option>
+             <option value="coconut">Coconut</option>
+             <option value="mango">Mango</option>
+           </select>
+         </label>
+         <input type="submit" value="Submit" />
+       </form>
+     );
+   }
+   */
 }
 ReactDOM.render(
   <EssayForm />,
