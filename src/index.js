@@ -498,7 +498,6 @@ ReactDOM.render(
  * 
  */
 
-<<<<<<< HEAD
 class EssayForm extends React.Component {
   constructor(props) {
     super(props)
@@ -519,28 +518,6 @@ class EssayForm extends React.Component {
   //テキストボックスのとき
   render() {
     return (
-=======
-class EssayForm extends React.Component{
-  constructor(props){
-    super(props)
-    this.state={
-      value:"テキスト入れてね♪"
-    }
-    this.handleChange=this.handleChange.bind(this)
-    this.handleSubmit=this.handleSubmit.bind(this)
-  }
-  handleChange(event){
-    this.setState({value:event.target.value})
-  }
-  handleSubmit(event){
-    alert('はぁ～い'+this.state.value)
-    event.preventDefault()
-  }
-  /*
-  テキストボックスのとき
-  render(){
-    return(
->>>>>>> 19969972bbf48b296431a86352f3edd325d61d6a
       <form onSubmit={this.handleSubmit}>
         <label>
           内容:
@@ -550,7 +527,6 @@ class EssayForm extends React.Component{
       </form>
     )
   }
-<<<<<<< HEAD
 
   /*
 =======
